@@ -5,7 +5,7 @@ from pymchelper.writers.inspector import Inspector
 from pymchelper.writers.plots import GnuplotDataWriter, PlotDataWriter, ImageWriter
 from pymchelper.writers.shieldhit import TxtWriter
 from pymchelper.writers.sparse import SparseWriter
-from pymchelper.writers.trip98 import TripCubeWriter, TripDddWriter
+from pymchelper.writers.trip98 import TripCubeWriter, TripDddWriter, TripSpcWriter
 
 
 class Converters(IntEnum):
@@ -18,9 +18,10 @@ class Converters(IntEnum):
     image = 3
     tripcube = 4
     tripddd = 5
-    excel = 6
-    sparse = 7
-    inspect = 8
+    tripspc = 6
+    excel = 7
+    sparse = 8
+    inspect = 9
 
     @classmethod
     def _converter_mapping(cls, item):
@@ -31,6 +32,7 @@ class Converters(IntEnum):
             cls.image: ImageWriter,
             cls.tripcube: TripCubeWriter,
             cls.tripddd: TripDddWriter,
+            cls.tripspc: TripSpcWriter,
             cls.excel: ExcelWriter,
             cls.sparse: SparseWriter,
             cls.inspect: Inspector

@@ -740,3 +740,24 @@ class TripDddWriter(object):
         params_error = fwhm1_cm_error, factor_error, fwhm2_cm_error, dz0_MeV_cm_g_error
 
         return params, params_error
+
+
+class TripSpcWriter(object):
+
+    def __init__(self, filename, options):
+
+        self.spc_filename = filename
+        self.energy_MeV = options.energy
+        self.projectile = options.projectile
+        self.verbosity = options.verbose
+        if not self.spc_filename.endswith(".spc"):
+            self.spc_filename += ".spc"
+        self.outputdir = os.path.abspath(os.path.dirname(self.spc_filename))
+
+    def write(self, detector):
+        from pymchelper.shieldhit.detector.detector_type import SHDetType
+
+        if detector.dettyp != SHDetType.fluence:
+            logger.warning("Incompatible detector type {:s} used, please use {:s} instead".format(
+                detector.dettyp, SHDetType.fluence))
+            return 1

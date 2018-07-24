@@ -61,7 +61,6 @@ def main(args=sys.argv[1:]):
 
     parser = argparse.ArgumentParser(description=_helptxt, epilog=_epitxt)
 
-    # subparsers = parser.add_subparsers(title='available converters', metavar='...')
     subparsers = parser.add_subparsers(dest='command', metavar='converter')
 
     parser_txt = subparsers.add_parser(Converters.txt.name, help='converts to plain txt file')
@@ -104,10 +103,10 @@ def main(args=sys.argv[1:]):
                                type=float,
                                default=0.0)
 
-    parser_tripcube = subparsers.add_parser(Converters.tripcube.name, help='converts to trip98 data cube')
+    parser_tripcube = subparsers.add_parser(Converters.tripcube.name, help='converts to TRiP98 data cube')
     add_default_options(parser_tripcube)
 
-    parser_tripddd = subparsers.add_parser(Converters.tripddd.name, help='converts to trip98 ddd file')
+    parser_tripddd = subparsers.add_parser(Converters.tripddd.name, help='converts to TRiP98 DDD file')
     add_default_options(parser_tripddd)
     parser_tripddd.add_argument("--energy",
                                 help='energy of the beam [MeV/amu]',
@@ -120,6 +119,12 @@ def main(args=sys.argv[1:]):
                                 choices=(0, 1, 2),
                                 default=2,
                                 type=int)
+
+    parser_tripspc = subparsers.add_parser(Converters.tripspc.name, help='converts to TRiP98 SPC file')
+    add_default_options(parser_tripspc)
+    parser_tripspc.add_argument("--energy",
+                                help='energy of the beam [MeV/amu]',
+                                type=float)
 
     parser.add_argument('-V', '--version', action='version', version=pymchelper.__version__)
 
