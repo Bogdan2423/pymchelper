@@ -52,7 +52,7 @@ def fromfile(filename):
         raise Exception("File format not compatible", filename)
     estimator = Estimator()
     estimator.file_counter = 1
-    if not reader.read(estimator):  # unsuccefful read
+    if not reader.read(estimator):  # if read failed
         estimator = None
     return estimator
 
